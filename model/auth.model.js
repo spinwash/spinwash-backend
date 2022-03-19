@@ -10,6 +10,10 @@ const userScheama = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    referralCodeUsed: {
+      type: Boolean,
+      default: false,
+    },
     name: {
       type: String,
       trim: true,
@@ -45,6 +49,9 @@ const userScheama = new mongoose.Schema(
     },
     shirtHung: { type: Boolean, default: false },
     shirtFolded: { type: Boolean, default: false },
+    shirtDryCleanAndPress: { type: Boolean, default: false },
+    shirtPressOnly: { type: Boolean, default: false },
+    shirtWashAndPress: { type: Boolean, default: false },
     beddingWashAndPress: { type: Boolean, default: false },
     beddingWashAndFold: { type: Boolean, default: false },
     beddingPressOnly: { type: Boolean, default: false },

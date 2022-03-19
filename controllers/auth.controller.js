@@ -3,18 +3,25 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
+
 const _ = require('lodash');
 const { OAuth2Client } = require('google-auth-library');
 const { validationResult } = require('express-validator');
 const { errorHandler } = require('../helpers/dbErrorHandling');
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.MAIL_KEY);
+
+const mailgun = new Mailgun(formData);
+const client = mailgun.client({
+  username: 'spinwash',
+  key: process.env.MAILGUN_API_KEY,
+  url: 'https://api.eu.mailgun.net',
+});
 
 exports.registerController = (req, res) => {
   const { name, email, password } = req.body;
   const errors = validationResult(req);
 
-  console.log(req.body);
   //custom validation
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
@@ -30,59 +37,57 @@ exports.registerController = (req, res) => {
         return res.status(400).json({
           message: 'Email is taken',
         });
-      } else {
-        console.log(err);
       }
+      console.log('this should not run with same email');
+      //GENERATE TOKEN
+      const token = jwt.sign(
+        {
+          name,
+          email,
+          password,
+        },
+        process.env.JWT_ACCOUNT_ACTIVATION,
+        {
+          expiresIn: '5m',
+        }
+      );
+
+      // Email Data
+      const emailData = {
+        from: 'spinwash8@gmail.com',
+        to: email,
+        subject: 'Account activation link',
+        html: `
+                  <h1>Please use the following to activate your account</h1>
+                  <p>${process.env.CLIENT_URL}/users/activate/${token}</p>
+                  <hr />
+                  <p>This email may containe sensetive information</p>
+                  <p>${process.env.CLIENT_URL}</p>
+              `,
+      };
+
+      // send the email data
+      client.messages
+        .create(process.env.MAIL_FROM, emailData)
+        .then((sent) => {
+          console.log(sent);
+          return res.json({
+            message: `Email has been sent to ${email}`,
+          });
+        })
+        .catch((err) => {
+          return res.status(400).json({
+            success: false,
+            errors: errorHandler(err),
+          });
+        });
     });
-
-    //GENERATE TOKEN
-    const token = jwt.sign(
-      {
-        name,
-        email,
-        password,
-      },
-      process.env.JWT_ACCOUNT_ACTIVATION,
-      {
-        expiresIn: '5m',
-      }
-    );
-    console.log(token);
-
-    // Email Data
-    const emailData = {
-      from: process.env.EMAIL_FROM,
-      to: email,
-      subject: 'Account activation link',
-      html: `
-                <h1>Please use the following to activate your account</h1>
-                <p>${process.env.CLIENT_URL}/users/activate/${token}</p>
-                <hr />
-                <p>This email may containe sensetive information</p>
-                <p>${process.env.CLIENT_URL}</p>
-            `,
-    };
-    // send the email data
-    sgMail
-      .send(emailData)
-      .then((sent) => {
-        return res.json({
-          message: `Email has been sent to ${email}`,
-        });
-      })
-      .catch((err) => {
-        return res.status(400).json({
-          success: false,
-          errors: errorHandler(err),
-        });
-      });
   }
 };
 
 //activation and save to database
 exports.activationController = (req, res) => {
   const { token } = req.body;
-
   if (token) {
     //verify the token is valid or not or expired
     jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
@@ -96,7 +101,6 @@ exports.activationController = (req, res) => {
         // get name email password from token
         const { name, email, password } = jwt.decode(token);
 
-        console.log(email);
         const user = new User({
           name,
           email,
@@ -312,12 +316,12 @@ exports.resetPasswordController = (req, res) => {
 };
 
 // Google Login
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 exports.googleController = (req, res) => {
   const { idToken } = req.body;
   //console.log(idToken);
-  client
+  googleClient
     .verifyIdToken({
       idToken,
       audience: process.env.GOOGLE_CLIENT_ID,
@@ -343,7 +347,14 @@ exports.googleController = (req, res) => {
             //if user not exists we will save in database and generate password for it
             let password = email + process.env.JWT_SECRET;
             const profilePicture = picture;
-            user = new User({ name, email, password, profilePicture }); //create new user object with google data
+            const referralCodeUsed = false;
+            user = new User({
+              name,
+              email,
+              password,
+              profilePicture,
+              referralCodeUsed,
+            }); //create new user object with google data
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR GOOGLE LOGIN ON USER SAVE - ', err);
@@ -356,10 +367,34 @@ exports.googleController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name, profilePicture, role } = data;
+              const {
+                _id,
+                email,
+                name,
+                profilePicture,
+                role,
+                referralCodeUsed,
+              } = data;
               return res.json({
                 token,
-                user: { _id, email, name, profilePicture, role },
+                user: {
+                  _id,
+                  email,
+                  name,
+                  profilePicture,
+                  role,
+                  referralCodeUsed,
+                  beddingPressOnly: false,
+                  beddingWashAndFold: false,
+                  beddingWashAndPress: false,
+                  order: [],
+                  role: 'subscriber',
+                  shirtDryCleanAndPress: false,
+                  shirtFolded: false,
+                  shirtHung: false,
+                  shirtPressOnly: false,
+                  shirtWashAndPress: false,
+                },
               });
             });
           }

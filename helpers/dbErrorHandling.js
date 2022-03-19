@@ -30,7 +30,7 @@ const uniqueMessage = (error) => {
  */
 exports.errorHandler = (error) => {
   let message = '';
-
+  console.log(error);
   if (error.code) {
     switch (error.code) {
       case 11000:

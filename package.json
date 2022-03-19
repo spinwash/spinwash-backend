@@ -19,7 +19,7 @@
     "google-auth-library": "^7.11.0",
     "jsonwebtoken": "^8.5.1",
     "loader": "^2.1.1",
-    "mailgun.js": "^4.1.6",
+    "mailgun.js": "^4.2.3",
     "mongoose": "^6.1.8",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",
