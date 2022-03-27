@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -31,6 +32,20 @@ app.get('/api/allUsers', async (req, res) => {
 });
 app.use('/api', authRouter);
 app.use('/api', userRouter);
+
+app.get('/api/reviews', (req, res) => {
+  request(
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&key=${process.env.GOOGLE_PLACES_KEY}`,
+    (error, response, body) => {
+      if (error) {
+        res.send('An erorr occured');
+      }
+      else {
+        res.json(body);
+      }
+    }
+  );
+});
 
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Listening on port ${process.env.PORT || 8080}!`);

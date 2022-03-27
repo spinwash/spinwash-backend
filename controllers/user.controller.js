@@ -34,14 +34,9 @@ exports.updateController = (req, res) => {
     profilePicture,
     address,
     preferences,
-    beddingPressOnly,
-    beddingWashAndFold,
-    beddingWashAndPress,
-    shirtHung,
-    shirtFolded,
-    shirtDryCleanAndPress,
-    shirtWashAndPress,
-    shirtPressOnly,
+    shirtFoldingPreference,
+    shirtWashingPreference,
+    beddingPreference,
   } = req.body;
   User.findOne({ _id: _id }, (err, user) => {
     if (err || !user) {
@@ -55,15 +50,9 @@ exports.updateController = (req, res) => {
     user.phoneNumber = phoneNumber;
     user.address = address;
     user.preferences = preferences;
-    user.beddingPressOnly = beddingPressOnly;
-    user.beddingWashAndFold = beddingWashAndFold;
-    user.beddingWashAndPress = beddingWashAndPress;
-    user.shirtHung = shirtHung;
-    user.shirtFolded = shirtFolded;
-    user.shirtDryCleanAndPress = shirtDryCleanAndPress;
-    user.shirtWashAndPress = shirtWashAndPress;
-    user.shirtPressOnly = shirtPressOnly;
-
+    user.shirtFoldingPreference = shirtFoldingPreference;
+    user.shirtWashingPreference = shirtWashingPreference;
+    user.beddingPreference = beddingPreference;
     user.save((err, updatedUser) => {
       if (err) {
         console.log('USER UPDATE ERROR', err);
@@ -84,6 +73,7 @@ exports.updateOrders = (req, res) => {
   const { pickupTime, pickup, dropOffTime, dropOff, address, requirements } =
     req.body;
   // find by document id and update and push item in array
+  console.log(pickupTime, pickup, dropOffTime, dropOff, address, requirements);
 
   let email = '';
   let name = '';
@@ -101,21 +91,53 @@ exports.updateOrders = (req, res) => {
 
   //send mail to spinwash for order
   const emailData = {
-    from: 'spinwash8@gmail.com',
+    from: 'info@spinwash.co.uk',
     to: 'spinwash8@gmail.com',
     subject: 'Order created',
     html: `
               <h1>New Order</h1>
-              <p>${
-                (email,
-                name,
-                pickupTime,
-                pickup,
-                dropOffTime,
-                dropOff,
-                address,
-                requirements)
-              }</p>
+              <p>
+              Email - ${email},
+              <br/>
+               Name - ${name},
+                <br/>
+               Pickup time ${pickupTime},
+                 <br/>
+               pickup date - ${pickup},
+                <br/>
+               DropOffTime - ${dropOffTime},
+                <br/>
+               DropOff Date - ${dropOff},
+                <br/>
+               Address - ${address},
+                <br/>
+               Requirements - ${requirements}
+                 <br/>
+              </p>
+              <hr />
+          `,
+  };
+  const emailDataClient = {
+    from: 'info@spinwash.co.uk',
+    to: email,
+    subject: 'Order created Successfully',
+    html: `
+              <h1>New Order</h1>
+              <p>
+                <br/>
+               Pickup time ${pickupTime},
+                 <br/>
+               pickup date - ${pickup},
+                <br/>
+               DropOffTime - ${dropOffTime},
+                <br/>
+               DropOff Date - ${dropOff},
+                <br/>
+               Address - ${address},
+                <br/>
+               Requirements - ${requirements}
+                 <br/>
+              </p>
               <hr />
           `,
   };
@@ -132,7 +154,17 @@ exports.updateOrders = (req, res) => {
         client.messages
           .create(process.env.MAIL_FROM, emailData)
           .then((sent) => {
+            console.log('message sent successfully to spinwash', sent);
+          })
+          .catch((err) => {
+            console.log('message not sent to spinwash', err);
+          });
+
+        client.messages
+          .create(process.env.MAIL_FROM, emailData)
+          .then((sent) => {
             console.log('message sent successfully - ', sent);
+            console.log(doc.order);
             return res.json(doc.order);
           })
           .catch((err) => {
