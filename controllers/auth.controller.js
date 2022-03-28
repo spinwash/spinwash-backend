@@ -58,7 +58,7 @@ exports.registerController = (req, res) => {
 
       // Email Data
       const emailData = {
-        from: 'mail@spinwash.co.uk',
+        from: 'Spinwash <mail@spinwash.co.uk>',
         to: email,
         subject: 'Activate Your Account',
         html: `
@@ -483,8 +483,8 @@ exports.activationController = (req, res) => {
           } else {
             // send email to spinwash that new user has logedin
             const emailData = {
-              from: 'info@spinwash.co.uk',
-              to: 'mail@spinwash.co.uk',
+              from: 'Spinwash <info@spinwash.co.uk>',
+              to: 'spinwash8@gmail.com',
               subject: 'New User Signup ✨',
               html: `
               <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -943,7 +943,7 @@ exports.loginController = (req, res) => {
 
 exports.forgotPasswordController = (req, res) => {
   const { email } = req.body;
-  console.log(email);
+  console.log('forgot password - ', email);
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -954,17 +954,19 @@ exports.forgotPasswordController = (req, res) => {
     });
   } else {
     // find if the user exists
+
     User.findOne(
       {
         email,
       },
       (err, user) => {
         if (err || !user) {
+          console.log('user does not exists');
           return res.status(400).json({
             error: 'Email does not exist',
           });
         }
-
+        console.log('user exists');
         const token = jwt.sign(
           {
             _id: user._id,
@@ -976,9 +978,9 @@ exports.forgotPasswordController = (req, res) => {
         );
 
         const emailData = {
-          from: 'spinwash <mail@spinwash.co.uk>',
+          from: 'Spinwash <mail@spinwash.co.uk>',
           to: email,
-          subject: 'spinwash Password Reset',
+          subject: 'Spinwash Password Reset',
           html: `
         <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -1264,7 +1266,7 @@ exports.forgotPasswordController = (req, res) => {
                                   font-size: 14px;
                                   padding: 10px;
                                 ">
-                      <a ${process.env.CLIENT_URL}/users/password/reset/${token} class="btn-primary" itemprop="url"
+                      <a href=${process.env.CLIENT_URL}/users/password/reset/${token} class="btn-primary" itemprop="url"
                         style="
                                     font-family: 'Helvetica Neue', Helvetica, Arial,
                                       sans-serif;
@@ -1360,11 +1362,13 @@ exports.forgotPasswordController = (req, res) => {
                   'Database connection error on user password forgot request',
               });
             } else {
-              mg.messages
-                .create('spinwash.xyz', emailData)
-                .then(() => {
+              console.log('creating email');
+              client.messages
+                .create(process.env.MAIL_FROM, emailData)
+                .then((sent) => {
+                  console.log(sent);
                   return res.json({
-                    message: `Email has been sent to ${email}. Follow the instruction to activate your account`,
+                    message: `Email has been sent to ${email}. Follow the instruction to reset your password`,
                   });
                 })
                 .catch((err) => {

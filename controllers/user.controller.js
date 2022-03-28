@@ -91,7 +91,7 @@ exports.updateOrders = (req, res) => {
 
   //send mail to spinwash for order
   const emailData = {
-    from: 'info@spinwash.co.uk',
+    from: 'Spinwash <info@spinwash.co.uk>',
     to: 'spinwash8@gmail.com',
     subject: 'Order created',
     html: `
@@ -118,7 +118,7 @@ exports.updateOrders = (req, res) => {
           `,
   };
   const emailDataClient = {
-    from: 'info@spinwash.co.uk',
+    from: 'Spinwash <info@spinwash.co.uk>',
     to: email,
     subject: 'Order created Successfully',
     html: `
