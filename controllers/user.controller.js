@@ -190,3 +190,37 @@ exports.getUserOrders = (req, res) => {
     res.json(user.order);
   });
 };
+
+exports.contactController = (req, res) => {
+  const { name, email, message } = req.body;
+  const emailData = {
+    from: email,
+    to: 'spinwash8@gmail.com',
+    subject: 'New Message',
+    html: `
+              <h1>New Order</h1>
+              <p>
+              Email - ${email},
+              <br/>
+              Name - ${name},
+              <br/>
+              Message - ${message}
+              <br/>
+              </p>
+              <hr />
+          `,
+  };
+  client.messages
+    .create(process.env.MAIL_FROM, emailData)
+    .then((sent) => {
+      return res.json({
+        message: `Message sent successfully`,
+      });
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        success: false,
+        errors: 'Message not sent',
+      });
+    });
+};

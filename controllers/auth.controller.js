@@ -1514,9 +1514,9 @@ exports.googleController = (req, res) => {
                   referralCodeUsed,
                   order: [],
                   role: 'subscriber',
-                  shirtFoldingPreference: '',
-                  shirtWashingPreference: '',
-                  beddingPreference: '',
+                  shirtFoldingPreference: 'Hung',
+                  shirtWashingPreference: 'Wash And Press',
+                  beddingPreference: 'Wash And Press',
                 },
               });
             });

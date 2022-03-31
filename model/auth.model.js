@@ -47,9 +47,9 @@ const userScheama = new mongoose.Schema(
       type: String,
       required: true,
     },
-    shirtFoldingPreference: { type: String },
-    shirtWashingPreference: { type: String },
-    beddingPreference: { type: String },
+    shirtFoldingPreference: { type: String, default: 'Hung' },
+    shirtWashingPreference: { type: String, default: 'Wash And Press' },
+    beddingPreference: { type: String, default: 'Wash And Press' },
     preferences: { type: String },
     salt: String,
     role: {
