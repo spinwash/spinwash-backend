@@ -86,97 +86,92 @@ exports.updateOrders = (req, res) => {
     }
     console.log('fetching user for order update');
     email = user.email;
+    console.log(email);
     name = user.name;
-  });
 
-  //send mail to spinwash for order
-  const emailData = {
-    from: 'Spinwash <info@spinwash.co.uk>',
-    to: 'spinwash8@gmail.com',
-    subject: 'Order created',
-    html: `
+    console.log('email - ', email);
+
+    //send mail to spinwash for order
+    const emailData = {
+      from: 'Spinwash <info@spinwash.co.uk>',
+      to: 'spinwash8@gmail.com',
+      subject: 'Order created',
+      html: `
               <h1>New Order</h1>
               <p>
-              Email - ${email},
+              <b>Email</b> - ${email},
               <br/>
-               Name - ${name},
+               <b>Name</b> - ${name},
                 <br/>
-               Pickup time ${pickupTime},
-                 <br/>
-               pickup date - ${pickup},
+               <b>Pickup</b> - ${pickup} - ${pickupTime},
                 <br/>
-               DropOffTime - ${dropOffTime},
+               <b>DropOff</b> - ${dropOff} - ${dropOffTime},
                 <br/>
-               DropOff Date - ${dropOff},
+               <b>Address</b> - ${address},
                 <br/>
-               Address - ${address},
+               <b>Requirements</b> - ${requirements}
                 <br/>
-               Requirements - ${requirements}
-                 <br/>
               </p>
               <hr />
           `,
-  };
-  const emailDataClient = {
-    from: 'Spinwash <info@spinwash.co.uk>',
-    to: email,
-    subject: 'Order created Successfully',
-    html: `
-              <h1>New Order</h1>
+    };
+    const emailDataClient = {
+      from: 'Spinwash <info@spinwash.co.uk>',
+      to: email,
+      subject: 'Order Confirmed',
+      html: `
+              <h1>Details about your Order</h1>
               <p>
                 <br/>
-               Pickup time ${pickupTime},
-                 <br/>
-               pickup date - ${pickup},
+                <b>Pickup</b> - ${pickup} - ${pickupTime},
                 <br/>
-               DropOffTime - ${dropOffTime},
+                <b>DropOff</b> - ${dropOff} - ${dropOffTime},
                 <br/>
-               DropOff Date - ${dropOff},
+                <b>Address</b> - ${address},
                 <br/>
-               Address - ${address},
-                <br/>
-               Requirements - ${requirements}
+                <b>Requirements</b> - ${requirements}
                  <br/>
               </p>
               <hr />
           `,
-  };
+    };
 
-  User.findByIdAndUpdate(
-    id,
-    { $push: { order: req.body } },
-    { safe: true, upsert: true },
-    (err, doc) => {
-      if (err) {
-        return res.status(400).json({ error: err });
-      } else {
-        console.log('new order created successfully');
-        client.messages
-          .create(process.env.MAIL_FROM, emailData)
-          .then((sent) => {
-            console.log('message sent successfully to spinwash', sent);
-          })
-          .catch((err) => {
-            console.log('message not sent to spinwash', err);
-          });
-
-        client.messages
-          .create(process.env.MAIL_FROM, emailData)
-          .then((sent) => {
-            console.log('message sent successfully - ', sent);
-            console.log(doc.order);
-            return res.json(doc.order);
-          })
-          .catch((err) => {
-            console.log(err);
-            return res.status(400).json({
-              success: false,
+    User.findByIdAndUpdate(
+      id,
+      { $push: { order: req.body } },
+      { safe: true, upsert: true },
+      (err, doc) => {
+        if (err) {
+          return res.status(400).json({ error: err });
+        } else {
+          console.log('new order created successfully');
+          client.messages
+            .create(process.env.MAIL_FROM, emailData)
+            .then((sent) => {
+              console.log('message sent successfully to spinwash', sent);
+            })
+            .catch((err) => {
+              console.log('message not sent to spinwash', err);
             });
-          });
+
+          client.messages
+            .create(process.env.MAIL_FROM, emailDataClient)
+            .then((sent) => {
+              console.log('message sent successfully - ', sent);
+              return res.json(doc.order);
+            })
+            .catch((err) => {
+              console.log(err);
+              return res.status(400).json({
+                success: false,
+              });
+            });
+        }
       }
-    }
-  );
+    );
+  });
 };
+
 exports.getUserOrders = (req, res) => {
   const { _id } = req.params;
 
