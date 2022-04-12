@@ -35,7 +35,7 @@ app.use('/api', userRouter);
 
 app.get('/api/reviews', (req, res) => {
   request(
-    `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&key=${process.env.GOOGLE_PLACES_KEY}`,
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJ7x-ElwgBdkgR0qGX_uNnw48&key=${process.env.GOOGLE_PLACES_KEY}`,
     (error, response, body) => {
       if (error) {
         res.send('An erorr occured');
