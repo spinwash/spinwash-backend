@@ -58,7 +58,7 @@ exports.registerController = (req, res) => {
 
       // Email Data
       const emailData = {
-        from: 'Spinwash <mail@spinwash.co.uk>',
+        from: 'Spinwash <noreply@spinwash.co.uk>',
         to: email,
         subject: 'Activate Your Account',
         html: `
@@ -483,7 +483,7 @@ exports.activationController = (req, res) => {
           } else {
             // send email to spinwash that new user has logedin
             const emailData = {
-              from: 'Spinwash <info@spinwash.co.uk>',
+              from: 'Spinwash <noreply@spinwash.co.uk>',
               to: 'spinwash8@gmail.com',
               subject: 'New User Signup ✨',
               html: `
@@ -978,7 +978,7 @@ exports.forgotPasswordController = (req, res) => {
         );
 
         const emailData = {
-          from: 'Spinwash <mail@spinwash.co.uk>',
+          from: 'Spinwash <noreply@spinwash.co.uk>',
           to: email,
           subject: 'Spinwash Password Reset',
           html: `
