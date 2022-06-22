@@ -3091,7 +3091,7 @@ exports.updateOrders = (req, res) => {
                                               text-align: center;
                                             "
                                           >
-                                            ${pickup} - ${pickupTime} to ${pickupTime-1}
+                                            ${pickup} - ${pickupTime}
                                           </h3>
                                         </td>
                                       </tr>
