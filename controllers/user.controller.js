@@ -1609,9 +1609,11 @@ exports.updateOrders = (req, res) => {
                                               text-align: center;
                                             "
                                           >
-                                          ${promo} 
                                           <br />  
                                           ${requirements}
+                                          <strong>Promo Code</strong>
+                                          ${promo} 
+                                         
                                           </h3>
                                         </td>
                                       </tr>
@@ -3184,6 +3186,8 @@ exports.updateOrders = (req, res) => {
                                             ${dropOff} - ${dropOffTime}
                                             <br />
                                             <br />
+
+                                          <strong>Promo Code</strong>
                                             ${promo}
                                           </h3>
                                         </td>
