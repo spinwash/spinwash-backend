@@ -36,6 +36,7 @@ const userScheama = new mongoose.Schema(
         dropOff: String,
         address: String,
         requirements: String,
+        promo: String,
       },
     ],
     profilePicture: {
