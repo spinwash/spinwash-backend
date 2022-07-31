@@ -70,10 +70,10 @@ exports.updateController = (req, res) => {
 
 exports.updateOrders = (req, res) => {
   const { id } = req.params;
-  const { pickupTime, pickup, dropOffTime, dropOff, address, requirements } =
+  const { pickupTime, pickup, dropOffTime, dropOff, address, requirements, promo } =
     req.body;
   // find by document id and update and push item in array
-  console.log(pickupTime, pickup, dropOffTime, dropOff, address, requirements);
+  console.log(pickupTime, pickup, dropOffTime, dropOff, address, requirements, promo);
 
   let email = '';
   let name = '';
@@ -1609,7 +1609,9 @@ exports.updateOrders = (req, res) => {
                                               text-align: center;
                                             "
                                           >
-                                            ${requirements}
+                                          ${promo} 
+                                          <br />  
+                                          ${requirements}
                                           </h3>
                                         </td>
                                       </tr>
@@ -3180,6 +3182,9 @@ exports.updateOrders = (req, res) => {
                                             "
                                           >
                                             ${dropOff} - ${dropOffTime}
+                                            <br />
+                                            <br />
+                                            ${promo}
                                           </h3>
                                         </td>
                                       </tr>
