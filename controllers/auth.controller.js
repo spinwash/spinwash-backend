@@ -19,7 +19,7 @@ const client = mailgun.client({
 });
 
 exports.registerController = (req, res) => {
-  const { name, email, password, promocode } = req.body;
+  const { name, email, password, promocode, phoneNumber, address, preferences, shirtFoldingPreference, shirtWashingPreference, beddingPreference } = req.body;
   const promoCode = promocode ? promocode.toLowerCase() : false;
   console.log(promoCode);
   const errors = validationResult(req);
@@ -49,6 +49,12 @@ exports.registerController = (req, res) => {
           email,
           password,
           promoCode,
+          phoneNumber,
+          address,
+          preferences,
+          shirtFoldingPreference,
+          shirtWashingPreference,
+          beddingPreference,
         },
         process.env.JWT_ACCOUNT_ACTIVATION,
         {
@@ -463,9 +469,9 @@ exports.activationController = (req, res) => {
       } else {
         //if valid save to database
         // get name email password from token
-        const { name, email, password, promoCode } = jwt.decode(token);
+        const { name, email, password, promoCode, phoneNumber, address, preferences, shirtFoldingPreference, shirtWashingPreference, beddingPreference } = jwt.decode(token);
 
-        const checkPromoCode = promoCode ? promoCode : 'no promo code used';
+        const checkPromoCode = promoCode ? promoCode : 'no referral code used';
 
         console.log(checkPromoCode);
 
@@ -473,6 +479,12 @@ exports.activationController = (req, res) => {
           name,
           email,
           password,
+          phoneNumber,
+          address,
+          preferences,
+          shirtFoldingPreference,
+          shirtWashingPreference,
+          beddingPreference,
         });
 
         user.save((err, user) => {
@@ -481,11 +493,11 @@ exports.activationController = (req, res) => {
               errors: errorHandler(err),
             });
           } else {
-            // send email to spinwash that new user has logedin
+            // send email to spinwash that new user has signed up
             const emailData = {
               from: 'Spinwash <noreply@spinwash.co.uk>',
-              to: 'spinwash8@gmail.com',
-              subject: 'New User Signup ✨',
+              to: 'ideacloudng@gmail.com',
+              subject: 'New User Signed up on Spinwash',
               html: `
               <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
               <html
@@ -755,6 +767,18 @@ exports.activationController = (req, res) => {
                                       Email - ${email}
                                       <br />
                                       Promo Code - ${checkPromoCode}
+                                      <br />
+                                      Phone Number - ${phoneNumber}
+                                      <br />
+                                      Address - ${address}
+                                      <br />
+                                      Preferences - ${preferences}
+                                      <br />
+                                      Shirt Folding Preference - ${shirtFoldingPreference}
+                                      <br />
+                                      Shirt Washing Preference - ${shirtWashingPreference}
+                                      <br />
+                                      Bedding Preference - ${beddingPreference}
                                     </td>
                                   </tr>
               
