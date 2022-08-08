@@ -496,7 +496,7 @@ exports.activationController = (req, res) => {
             // send email to spinwash that new user has signed up
             const emailData = {
               from: 'Spinwash <noreply@spinwash.co.uk>',
-              to: 'ideacloudng@gmail.com',
+              to: 'spinwash8@gmail.com',
               subject: 'New User Signed up on Spinwash',
               html: `
               <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
