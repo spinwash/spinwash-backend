@@ -97,135 +97,13 @@ exports.updateOrders = (req, res) => {
       to: 'spinwash8@gmail.com',
       subject: 'Order created',
       html: `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:o="urn:schemas-microsoft-com:office:office"
-        style="
-          width: 100%;
-          font-family: 'DM Serif Display', serif;
-          -webkit-text-size-adjust: 100%;
-          -ms-text-size-adjust: 100%;
-          padding: 0;
-          margin: 0;
-        "
-      >
-        <head>
-          <meta charset="UTF-8" />
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-          <meta name="x-apple-disable-message-reformatting" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta content="telephone=no" name="format-detection" />
+     
           <title>Order confirmation Transactional email</title>
-          <!--[if (mso 16)]>
-            <style type="text/css">
-              a {
-                text-decoration: none;
-              }
-            </style>
-          <![endif]-->
-          <!--[if gte mso 9
-            ]><style>
-              sup {
-                font-size: 100% !important;
-              }
-            </style><!
-          [endif]-->
-          <!--[if gte mso 9]>
-            <xml>
-              <o:OfficeDocumentSettings>
-                <o:AllowPNG></o:AllowPNG>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-              </o:OfficeDocumentSettings>
-            </xml>
-          <![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
+         
           <link
             href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i"
             rel="stylesheet"
           />
-          <!--<![endif]-->
           <style type="text/css">
             #outlook a {
               padding: 0;
@@ -577,11 +455,6 @@ exports.updateOrders = (req, res) => {
           "
         >
           <div class="es-wrapper-color" style="background-color: #f5f5f5">
-            <!--[if gte mso 9]>
-              <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-                <v:fill type="tile" color="#f5f5f5"></v:fill>
-              </v:background>
-            <![endif]-->
             <table
               class="es-wrapper"
               width="100%"
@@ -729,7 +602,7 @@ exports.updateOrders = (req, res) => {
                               </table>
                             </td>
                           </tr>
-                          <!--[if !mso]><!-- -->
+                         
                           <tr
                             class="es-desk-hidden"
                             style="
@@ -1758,135 +1631,12 @@ exports.updateOrders = (req, res) => {
       to: email,
       subject: 'Order Confirmed',
       html: `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:o="urn:schemas-microsoft-com:office:office"
-        style="
-          width: 100%;
-          font-family: 'DM Serif Display', serif;
-          -webkit-text-size-adjust: 100%;
-          -ms-text-size-adjust: 100%;
-          padding: 0;
-          margin: 0;
-        "
-      >
-        <head>
-          <meta charset="UTF-8" />
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-          <meta name="x-apple-disable-message-reformatting" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta content="telephone=no" name="format-detection" />
-          <title>Order confirmation Transactional email</title>
-          <!--[if (mso 16)]>
-            <style type="text/css">
-              a {
-                text-decoration: none;
-              }
-            </style>
-          <![endif]-->
-          <!--[if gte mso 9
-            ]><style>
-              sup {
-                font-size: 100% !important;
-              }
-            </style><!
-          [endif]-->
-          <!--[if gte mso 9]>
-            <xml>
-              <o:OfficeDocumentSettings>
-                <o:AllowPNG></o:AllowPNG>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-              </o:OfficeDocumentSettings>
-            </xml>
-          <![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
-          <link href="link rel=" preconnect link rel="stylesheet" />
-          <!--<![endif]-->
-          <!--[if !mso]><!-- -->
+      
           <link
             href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i"
             rel="stylesheet"
           />
-          <!--<![endif]-->
+          
           <style type="text/css">
             #outlook a {
               padding: 0;
@@ -2238,11 +1988,7 @@ exports.updateOrders = (req, res) => {
           "
         >
           <div class="es-wrapper-color" style="background-color: #f5f5f5">
-            <!--[if gte mso 9]>
-              <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-                <v:fill type="tile" color="#f5f5f5"></v:fill>
-              </v:background>
-            <![endif]-->
+         
             <table
               class="es-wrapper"
               width="100%"
@@ -2390,7 +2136,7 @@ exports.updateOrders = (req, res) => {
                               </table>
                             </td>
                           </tr>
-                          <!--[if !mso]><!-- -->
+                          
                           <tr
                             class="es-desk-hidden"
                             style="

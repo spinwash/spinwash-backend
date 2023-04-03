@@ -68,19 +68,7 @@ exports.registerController = (req, res) => {
         to: email,
         subject: 'Activate Your Account',
         html: `
-        <!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            box-sizing: border-box;
-            font-size: 14px;
-            margin: 0;
-          ">
-
-<head>
-  <meta name="viewport" content="width=device-width" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Actionable emails e.g. reset password</title>
+      
 
   <style type="text/css">
     img {
@@ -156,7 +144,7 @@ exports.registerController = (req, res) => {
   </style>
 </head>
 
-<body itemscope itemtype="http://schema.org/EmailMessage" style="
+<body  style="
               font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
               box-sizing: border-box;
               font-size: 14px;
@@ -208,8 +196,7 @@ exports.registerController = (req, res) => {
                       margin: 0 auto;
                       padding: 20px;
                     ">
-          <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action" itemscope
-            itemtype="http://schema.org/ConfirmAction" style="
+          <table class="main" width="100%" cellpadding="0" cellspacing="0"  style="
                         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                         box-sizing: border-box;
                         font-size: 14px;
@@ -343,8 +330,7 @@ exports.registerController = (req, res) => {
                                 font-size: 14px;
                                 margin: 0;
                               ">
-                    <td align='center' class="content-block" itemprop="handler" itemscope
-                      itemtype="http://schema.org/HttpActionHandler" style="
+                    <td align='center' class="content-block"  style="
                                   font-family: 'Helvetica Neue', Helvetica, Arial,
                                     sans-serif;
                                   box-sizing: border-box;
@@ -430,9 +416,7 @@ exports.registerController = (req, res) => {
                   " valign="top"></td>
     </tr>
   </table>
-</body>
 
-</html>
         `,
       };
 
@@ -499,20 +483,6 @@ exports.activationController = (req, res) => {
               to: 'spinwash8@gmail.com',
               subject: 'New User Signed up on Spinwash',
               html: `
-              <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-              <html
-                xmlns="http://www.w3.org/1999/xhtml"
-                style="
-                  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                  box-sizing: border-box;
-                  font-size: 14px;
-                  margin: 0;
-                "
-              >
-                <head>
-                  <meta name="viewport" content="width=device-width" />
-                  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                  <title>Actionable emails e.g. reset password</title>
               
                   <style type="text/css">
                     img {
@@ -575,8 +545,7 @@ exports.activationController = (req, res) => {
                 </head>
               
                 <body
-                  itemscope
-                  itemtype="http://schema.org/EmailMessage"
+                  
                   style="
                     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                     box-sizing: border-box;
@@ -653,9 +622,8 @@ exports.activationController = (req, res) => {
                             width="100%"
                             cellpadding="0"
                             cellspacing="0"
-                            itemprop="action"
-                            itemscope
-                            itemtype="http://schema.org/ConfirmAction"
+                            
+                          
                             style="
                               font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                               box-sizing: border-box;
@@ -877,8 +845,7 @@ exports.activationController = (req, res) => {
                       ></td>
                     </tr>
                   </table>
-                </body>
-              </html>
+             
               `,
             };
 
@@ -1006,19 +973,7 @@ exports.forgotPasswordController = (req, res) => {
           to: email,
           subject: 'Spinwash Password Reset',
           html: `
-        <!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            box-sizing: border-box;
-            font-size: 14px;
-            margin: 0;
-          ">
-
-<head>
-  <meta name="viewport" content="width=device-width" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Actionable emails e.g. reset password</title>
+      
 
   <style type="text/css">
     img {
@@ -1094,7 +1049,7 @@ exports.forgotPasswordController = (req, res) => {
   </style>
 </head>
 
-<body itemscope itemtype="http://schema.org/EmailMessage" style="
+<body  style="
               font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
               box-sizing: border-box;
               font-size: 14px;
@@ -1146,8 +1101,7 @@ exports.forgotPasswordController = (req, res) => {
                       margin: 0 auto;
                       padding: 20px;
                     ">
-          <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action" itemscope
-            itemtype="http://schema.org/ConfirmAction" style="
+          <table class="main" width="100%" cellpadding="0" cellspacing="0"  style="
                         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                         box-sizing: border-box;
                         font-size: 14px;
@@ -1281,8 +1235,7 @@ exports.forgotPasswordController = (req, res) => {
                                 font-size: 14px;
                                 margin: 0;
                               ">
-                    <td align='center' class="content-block" itemprop="handler" itemscope
-                      itemtype="http://schema.org/HttpActionHandler" style="
+                    <td align='center' class="content-block" style="
                                   font-family: 'Helvetica Neue', Helvetica, Arial,
                                     sans-serif;
                                   box-sizing: border-box;
@@ -1368,9 +1321,7 @@ exports.forgotPasswordController = (req, res) => {
                   " valign="top"></td>
     </tr>
   </table>
-</body>
 
-</html>
         `,
         };
 
