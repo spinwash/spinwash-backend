@@ -2478,7 +2478,7 @@ exports.updateOrders = (req, res) => {
                                               text-align: left;
                                             "
                                           >
-                                            Hi John,<br /><br />Thank you for using
+                                            Hi ${name},<br /><br />Thank you for using
                                             Spinwash.<br />Here is your order
                                             confirmation details.
                                           </h1>
